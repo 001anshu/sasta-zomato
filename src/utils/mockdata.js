@@ -1,22 +1,3 @@
-/*
-header
-  logo
-  serch
-  navitems
-
-body
-  serch
-  restorant container
-  restro card
-Foter
-  copyright
-  Links
-  Adress
-  contact
-*/
-import React from "react";
-import ReactDOM from "react-dom/client";
-
 const newobj = [
   {
     info: {
@@ -85,7 +66,7 @@ const newobj = [
       cuisines: ["Italian", "American"],
       avgRating: 4.4,
       parentId: "373094",
-      avgRatingString: "4.4",
+      avgRatingString: "3.6",
       totalRatingsString: "500+",
       sla: {
         deliveryTime: 26,
@@ -1227,81 +1208,4 @@ const newobj = [
     },
   },
 ];
-
-const Header = () => {
-  return (
-    <div className="header">
-      <div className="navicon">
-        <img src="https://www.iskconcommunications.org/images/faviconiskcon.png" />
-        <p>serch</p>
-      </div>
-      <div className="navele">
-        <ul>
-          <li>Home</li>
-          <li>About</li>
-          <li>Store</li>
-          <li>Cart</li>
-        </ul>
-      </div>
-    </div>
-  );
-};
-
-
-
-const RestroCard = (props) => {
-  const { resdata } = props;
-
-  return (
-    <div className="restrocard">
-      <img
-        className="food-img p5"
-        src={"https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/" + resdata.info.cloudinaryImageId}
-      />
-      <div className="food-restroName p5">
-        <b>{resdata.info.name}</b>
-      </div>
-      <div className="food-discription p5">
-        {resdata.info.cuisines.join(", ")}
-      </div>
-      <div className="food-rtp p5">
-        <div className="rating">{resdata.info.avgRating}★</div>
-        <div className="deliveryTime">{resdata.info.sla.deliveryTime}</div>
-        <div className="price">{resdata.info.costForTwo}</div>
-      </div>
-      <div className="locality p5">{resdata.info.locality}</div>
-    </div>
-  );
-};
-
-const Body = () => {
-  return (
-    <div className="body">
-      <div className="cards">
-
-        {
-          newobj.map(restr=><RestroCard key={restr.info.id} resdata={restr}/>)
-        }
-
-        
-  
-      </div>
-    </div>
-  );
-};
-const textobj = [
-  {
-    name: "anshu",
-    class: "ECE",
-    subject: "vlsi",
-  },
-];
-
-const AppMain = () => (
-  <div className="mainbody">
-    <Header />
-    <Body />
-  </div>
-);
-const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(<AppMain />);
+export default newobj
