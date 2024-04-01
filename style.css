@@ -2,10 +2,14 @@
   scroll-behavior: smooth;
   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
+body{
+  margin:0px;
+}
 .header {
   display: flex;
-  background-color: rgb(253, 133, 20);
-  position: fixed; top: 0; left: 0; z-index: 9999; width: 100%; height: 50px;
+  background-color: rgb(222, 21, 21);
+  color: white;
+  position: relative;
   /* border: 2px solid red; */
   justify-content: space-between;
 }
@@ -25,8 +29,13 @@
   width: 50px;
 }
 
-.navele>ul {
+.navele>ul>li>a{
+  color: white;
+  text-decoration: none;
+}
+.navele>ul{
   display: flex;
+  
   list-style: none;
   gap: 20px;
   padding-right: 40px;
@@ -74,10 +83,38 @@
 }
 .body{
   display: block;
-  margin-top: 40px;
+  /* margin-top: 60px; */
 }
 .cards {
-  margin-top: 40px;
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  cursor: pointer;
+
+  /* margin-top: 40px; */
+  display: flex;
+  flex-wrap: wrap;
+  /* grid-template-columns: repeat(5, 1fr); */
+}
+.filter-btn{
+  margin: 40px 0px 10px 10px;
+  cursor: pointer;
+
+  
+}
+.shimmer-cards{
+  display: flex;
+  margin: 40px;
+  flex-wrap: wrap;
+}
+.shimmer-card{
+  background-color: #f0f0f0;
+  height: 400px;
+  cursor: pointer;
+  width: 215px;
+  margin: 30px;
+}
+.login{
+  cursor: pointer;
+}
+.search{
+  margin: 10px;
+  
 }
