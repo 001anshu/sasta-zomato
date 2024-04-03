@@ -14,16 +14,23 @@ Foter
   Adress
   contact
 */
-import React from "react";
+import React, { Suspense, lazy } from "react";
 import ReactDOM from "react-dom/client";
 import Header from "./components/Header";
 import Body from "./components/Body";
 import { createBrowserRouter, RouterProvider,Outlet } from "react-router-dom";
-import About from "./components/About";
-import Store from "./components/Store";
-import Cart from "./components/Cart";
+
 import Error from "./components/Error";
-import Restromenu from "./components/Restromenu";
+
+import Nakli from "./components/Nakli";
+
+const About=lazy(()=>import("./components/About"));
+
+const Store=lazy(()=>import("./components/Store"));
+
+const Cart=lazy(()=>import("./components/Cart"));
+
+const Restromenu=lazy(()=>import("./components/Restromenu"));
 
 const AppMain = () => (
   <div className="mainbody">
@@ -45,19 +52,19 @@ const appRouter = createBrowserRouter([
       {
         
       path: "/about",
-      element: <About />,
+      element: <Suspense fallback={<Nakli></Nakli>}><About /></Suspense>,
     },
     {
       path:"/store",
-      element:<Store/>
+      element: <Suspense fallback={<Nakli></Nakli>}><Store /></Suspense>,
     },
     {
       path:"/cart",
-      element:<Cart/>
+      element: <Suspense fallback={<Nakli></Nakli>}><Cart /></Suspense>,
     },
     {
       path:"/restromenu/:resId",
-      element:<Restromenu/>
+      element:<Suspense fallback={<Nakli></Nakli>}><Restromenu /></Suspense>,
     }
   ]
   },

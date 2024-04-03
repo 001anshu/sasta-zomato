@@ -1,5 +1,5 @@
 import RestroCard from "./RestroCard";
-import newobj from "../utils/mockdata";
+import useConnection from "../utils/useConnection";
 import { useEffect, useState } from "react";
 import Nakli from "./Nakli";
 import { Link } from "react-router-dom";
@@ -11,11 +11,12 @@ const Body = () => {
   const [orignaldata, setorignaldata] = useState("");
   const [filterdata, setfilterdata] = useState("");
   const [ip, setip] = useState("");
-
+  const check=useConnection();
   useEffect(() => {
     console.log("useeffect");
     fetchdata();
   }, []);
+
 
   const fetchdata = async () => {
     const data2 = await fetch(API);
@@ -26,7 +27,15 @@ const Body = () => {
     setorignaldata(restaurants);
     setfilterdata(restaurants);
   };
-
+  {
+    if(check==false){
+      return(
+        <div>
+          <h1>oops sems you are not connected to internet</h1>
+        </div>
+      )
+    }
+  }
   {
     if (filterdata.length === 0) {
       return (

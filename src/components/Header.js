@@ -1,10 +1,12 @@
 import { LOGO_URL } from "../utils/constant";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import useConnection from "../utils/useConnection";
 
 const Header = () => {
 
 const [btnname,setbtnname]=useState("login");
+const check=useConnection();
 
   return (
     <div className="header">
@@ -18,6 +20,7 @@ const [btnname,setbtnname]=useState("login");
           <li><Link to="/about">About</Link></li>
           <li><Link to="/store">Store</Link></li>
           <li><Link to="/cart">Cart</Link></li>
+          <li>Network:{check? "🟢":"🔴"}</li>
           <li>
             <button className="login"
               onClick={()=>{
