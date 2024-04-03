@@ -82,7 +82,7 @@ const Body = () => {
       </div>
       <div className="cards">
         {filterdata.map((restr) => (
-          <Link to ={"/restromenu/"+ restr.info.id}><RestroCard key={restr.info.id} resdata={restr} /></Link>
+          <Link to ={"/restromenu/"+ restr.info.id} key={restr.info.id}><RestroCard key={restr.info.id} resdata={restr} /></Link>
         ))}
       </div>
     </div>
