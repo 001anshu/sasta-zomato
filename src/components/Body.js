@@ -36,22 +36,13 @@ const Body = () => {
       )
     }
   }
-  {
-    if (filterdata.length === 0) {
-      return (
-        <div>
-          <Nakli />
-        </div>
-
-      );
-    }
-  }
+  
 
   return (
     <div className="body">
       <div>
         <button
-          className="filter-btn"
+          className="bg-yellow-100 p-2 m-3 rounded-md"
           onClick={() => {
             const a = filterdata.filter((ps) => ps.info.sla.deliveryTime > 30);
             setfilterdata(a);
@@ -61,7 +52,7 @@ const Body = () => {
           click me to sort
         </button>
         <button
-          className="filter-btn"
+          className="bg-yellow-100 p-2 m-3 rounded-md"
           onClick={() => {
             setfilterdata(orignaldata);
           }}
@@ -69,15 +60,17 @@ const Body = () => {
           click me to see orignal
         </button>
       </div>
-      <div className="search">
+      <div className="flex justify-center">
         <input
           type="text"
+          className="border border-blue-200 border-2 flex items-center rounded m-3 min-w-80 "
           value={ip}
           onChange={(e) => {
             setip(e.target.value);
           }}
         />
         <button
+          className="bg-blue-100 p-2 m-3 rounded-md"
           onClick={() => {
             console.log(ip);
             const b = orignaldata.filter((dr) =>
@@ -89,11 +82,15 @@ const Body = () => {
           serch
         </button> 
       </div>
-      <div className="cards">
-        {filterdata.map((restr) => (
-          <Link to ={"/restromenu/"+ restr.info.id} key={restr.info.id}><RestroCard key={restr.info.id} resdata={restr} /></Link>
-        ))}
-      </div>
+      {(filterdata.length === 0)?<Nakli/>:
+      <div className="flex flex-wrap justify-center  ">
+      {filterdata.map((restr) => (
+        <Link to ={"/restromenu/"+ restr.info.id} key={restr.info.id}><RestroCard key={restr.info.id} resdata={restr} /></Link>
+      ))}
+    </div>
+      }
+      
+      
     </div>
   );
 };

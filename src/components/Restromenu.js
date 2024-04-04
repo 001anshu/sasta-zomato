@@ -11,10 +11,12 @@ const Restromenu = () => {
   const main = data.main;
 
   const menu = data.data;
+  console.log(menu);
 
   return menu == null ? (
     <Nakli />
   ) : (
+
     <div>
       <div>
         <h1>{main}</h1>
