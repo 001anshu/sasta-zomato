@@ -8,7 +8,7 @@ const Header = () => {
   const check = useConnection();
 
   return (
-    <div className="flex justify-between items-center bg-pink-200 m-1 rounded-lg">
+    <div className="flex justify-between items-center bg-pink-200 m-1 rounded-lg shadow-lg">
       <div className="w-10" >
         <img src={LOGO_URL} />
       </div>

@@ -1,4 +1,4 @@
-import RestroCard from "./RestroCard";
+import RestroCard, { withPromoted } from "./RestroCard";
 import useConnection from "../utils/useConnection";
 import { useEffect, useState } from "react";
 import Nakli from "./Nakli";
@@ -11,13 +11,11 @@ const Body = () => {
   const [orignaldata, setorignaldata] = useState("");
   const [filterdata, setfilterdata] = useState("");
   const [ip, setip] = useState("");
-  const check=useConnection();
+  const check = useConnection();
   useEffect(() => {
     console.log("useeffect");
     fetchdata();
   }, []);
-
-
   const fetchdata = async () => {
     const data2 = await fetch(API);
     const json = await data2.json();
@@ -27,16 +25,17 @@ const Body = () => {
     setorignaldata(restaurants);
     setfilterdata(restaurants);
   };
+  const Promoted = withPromoted(RestroCard);
+
   {
-    if(check==false){
-      return(
+    if (check == false) {
+      return (
         <div>
           <h1>oops sems you are not connected to internet</h1>
         </div>
-      )
+      );
     }
   }
-  
 
   return (
     <div className="body">
@@ -60,10 +59,10 @@ const Body = () => {
           click me to see orignal
         </button>
       </div>
-      <div className="flex justify-center">
+      <div className="flex justify-center ">
         <input
           type="text"
-          className="border border-blue-200 border-2 flex items-center rounded m-3 min-w-80 "
+          className="border border-blue-200  flex items-center rounded m-3 min-w-80 "
           value={ip}
           onChange={(e) => {
             setip(e.target.value);
@@ -80,17 +79,23 @@ const Body = () => {
           }}
         >
           serch
-        </button> 
+        </button>
       </div>
-      {(filterdata.length === 0)?<Nakli/>:
-      <div className="flex flex-wrap justify-center  ">
-      {filterdata.map((restr) => (
-        <Link to ={"/restromenu/"+ restr.info.id} key={restr.info.id}><RestroCard key={restr.info.id} resdata={restr} /></Link>
-      ))}
-    </div>
-      }
-      
-      
+      {filterdata.length === 0 ? (
+        <Nakli />
+      ) : (
+        <div className="flex flex-wrap justify-center   ">
+          {filterdata.map((restr) => (
+            <Link to={"/restromenu/" + restr.info.id} key={restr.info.id}>
+              {restr.info.avgRating > 4.1 ? (
+                <RestroCard key={restr.info.id} resdata={restr} />
+              ) : (
+                <Promoted key={restr.info.id} resdata={restr} />
+              )}
+            </Link>
+          ))}
+        </div>
+      )}
     </div>
   );
 };

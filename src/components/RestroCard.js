@@ -4,7 +4,7 @@ const RestroCard = (props) => {
   const { resdata } = props;
 
   return (
-    <div className="h-auto w-52  bg-gray-100 m-6 rounded-xl">
+    <div className="h-auto w-52  bg-gray-100 m-6 rounded-xl hover:bg-gray-200 hover:shadow-md ">
       <img
         className="rounded-md"
         src={ CDN_URL+resdata.info.cloudinaryImageId
@@ -25,4 +25,21 @@ const RestroCard = (props) => {
     </div>
   );
 };
+
+
+export const withPromoted=(RestroCard)=>{
+  return(props)=>{
+    return(
+      <div>
+      <label className="absolute rounded-md p-1 m-2  bg-black text-white">promoted</label>
+      
+      {console.log("a")}
+      <RestroCard{...props}/>
+      </div>
+    )
+  }
+}
+
+
+
 export default RestroCard;

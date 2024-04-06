@@ -13,8 +13,10 @@ const useMenu = (resId) => {
     const r =
       json.data.cards[4].groupedCard?.cardGroupMap?.REGULAR.cards[1].card.card
         .itemCards;
-    const m = json.data?.cards[0]?.card?.card?.text;
+    const m = json.data?.cards[2]?.card?.card?.info;
+    console.log(json.data.cards[4].groupedCard?.cardGroupMap?.REGULAR  )
     setMain(m);
+    console.log(m);
 
     setData(r);
   };
