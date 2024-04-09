@@ -1,7 +1,7 @@
 import { items_img } from "../utils/constant";
 
 const SubItem = (idata) => {
-  console.log(idata);
+  // console.log(idata);
   const price = idata.idata.price / 100 || idata.idata.defaultPrice / 100;
   return (
     <div className="flex border-y-2 m-3 justify-between shadow-lg rounded-lg p-2">
