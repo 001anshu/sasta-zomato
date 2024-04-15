@@ -1,10 +1,10 @@
 import SubItem from "./SubItem";
-const ItemsAccordion = (items) => {
-  // console.log(items.items);
+const ItemsAccordion = ({items}) => {
+  console.log(items[0].card?.info);
   return (
     <div>
-      <div>
-        {items.items.map((item) => (
+      <div className="">
+        {items.map((item) => (
           // {cnsole.log(item.card.info.name)}
           <SubItem key={item.card.info.id} idata={item.card.info} />
         ))}

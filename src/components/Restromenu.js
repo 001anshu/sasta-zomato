@@ -53,7 +53,7 @@ const Restromenu = () => {
           </div>
           <hr></hr>
           <div className="text-gray-400">
-            {main?.expectationNotifiers[0]?.text}
+            {/* {main?.expectationNotifiers[0]?.text} */}
           </div>
         </div>
       </div>

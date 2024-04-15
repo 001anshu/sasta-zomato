@@ -18,57 +18,75 @@ import React, { Suspense, lazy } from "react";
 import ReactDOM from "react-dom/client";
 import Header from "./components/Header";
 import Body from "./components/Body";
-import { createBrowserRouter, RouterProvider,Outlet } from "react-router-dom";
+import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 
 import Error from "./components/Error";
 
 import Nakli from "./components/Nakli";
+import { Provider } from "react-redux";
+import appStore from "./utils/appStore";
 
-const About=lazy(()=>import("./components/About"));
+const About = lazy(() => import("./components/About"));
 
-const Store=lazy(()=>import("./components/Store"));
+const Contact = lazy(() => import("./components/Contact"));
 
-const Cart=lazy(()=>import("./components/Cart"));
+const Cart = lazy(() => import("./components/Cart"));
 
-const Restromenu=lazy(()=>import("./components/Restromenu"));
+const Restromenu = lazy(() => import("./components/Restromenu"));
 
 const AppMain = () => (
-  <div className="mainbody">
-    <Header />
-    <Outlet/>
-  </div>
+  <Provider store={appStore}>
+    <div className="mainbody">
+      <Header />
+      <Outlet />
+    </div>
+  </Provider>
 );
 
 const appRouter = createBrowserRouter([
   {
     path: "/",
     element: <AppMain />,
-    errorElement:<Error/>,
-    children:[
+    errorElement: <Error />,
+    children: [
       {
-        path:"/",
-        element:<Body/>
-    },
+        path: "/",
+        element: <Body />,
+      },
       {
-        
-      path: "/about",
-      element: <Suspense fallback={<Nakli></Nakli>}><About /></Suspense>,
-    },
-    {
-      path:"/store",
-      element: <Suspense fallback={<Nakli></Nakli>}><Store /></Suspense>,
-    },
-    {
-      path:"/cart",
-      element: <Suspense fallback={<Nakli></Nakli>}><Cart /></Suspense>,
-    },
-    {
-      path:"/restromenu/:resId",
-      element:<Suspense fallback={<Nakli></Nakli>}><Restromenu /></Suspense>,
-    }
-  ]
+        path: "/about",
+        element: (
+          <Suspense fallback={<Nakli></Nakli>}>
+            <About />
+          </Suspense>
+        ),
+      },
+      {
+        path: "/contact",
+        element: (
+          <Suspense fallback={<Nakli></Nakli>}>
+            <Contact />
+          </Suspense>
+        ),
+      },
+      {
+        path: "/cart",
+        element: (
+          <Suspense fallback={<Nakli></Nakli>}>
+            <Cart />
+          </Suspense>
+        ),
+      },
+      {
+        path: "/restromenu/:resId", //in case of variable we use " : "
+        element: (
+          <Suspense fallback={<Nakli></Nakli>}>
+            <Restromenu />
+          </Suspense>
+        ),
+      },
+    ],
   },
-  
 ]);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
